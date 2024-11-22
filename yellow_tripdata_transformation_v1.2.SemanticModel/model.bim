@@ -1,0 +1,3120 @@
+{
+  "compatibilityLevel": 1550,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"yellow_tripdata_2024-08\",\"yellow_tripdata_2020-08\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.138.1004.0 (24.11)"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "2ac15905-b7a3-4eca-9d32-265e62454a2e",
+        "fromColumn": "trip_pickup_date",
+        "fromTable": "yellow_tripdata_2024-08",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_2f74ae8f-5b48-4e1d-9a12-fda8de80b0c4"
+      },
+      {
+        "name": "4f8fda1e-3372-42ab-8676-da5512d058a9",
+        "fromColumn": "trip_dropoff_date",
+        "fromTable": "yellow_tripdata_2024-08",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_6fc51d6e-1aa9-4f84-b40c-b795524e9850"
+      },
+      {
+        "name": "14d2196d-e040-45cd-867f-84dca6cb3e78",
+        "fromColumn": "trip_pickup_date",
+        "fromTable": "yellow_tripdata_2020-08",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_058875f4-ea49-4f2f-821e-ba906c1fd486"
+      },
+      {
+        "name": "af6da89c-58ea-41f8-b549-d293c5424dff",
+        "fromColumn": "trip_dropoff_date",
+        "fromTable": "yellow_tripdata_2020-08",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_ea5e8fbd-1381-4862-af06-309829bc406c"
+      }
+    ],
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "yellow_tripdata_2024-08",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Exception"
+          }
+        ],
+        "columns": [
+          {
+            "name": "passenger_count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "7e92a100-3f96-4380-ac03-ae59e61585e4",
+            "sourceColumn": "passenger_count",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "trip_distance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "6417b8f7-96f7-410f-bd67-29eff13663fb",
+            "sourceColumn": "trip_distance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "RatecodeID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "8b2e3e6f-9070-4823-a0a1-6a74e20657d1",
+            "sourceColumn": "RatecodeID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "store_and_fwd_flag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a2724ab9-f292-4461-a207-e561be643424",
+            "sourceColumn": "store_and_fwd_flag",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PULocationID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f9dddf7b-b1de-428f-a143-8aa4cf3591e7",
+            "sourceColumn": "PULocationID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "DOLocationID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "cba3a87a-5caa-4fb8-a6e1-6b7fe10619f8",
+            "sourceColumn": "DOLocationID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "payment_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "2c3ef5b6-b052-4dab-b2c7-555f2aca83c7",
+            "sourceColumn": "payment_type",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "fare_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "331967a4-e7fb-4f08-810a-d9e92e595a26",
+            "sourceColumn": "fare_amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "extra",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "a3ea1c5c-aab4-4b76-8b7f-0ef638dfb9dd",
+            "sourceColumn": "extra",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "mta_tax",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "42aa5417-71a1-4fab-b437-54dfe14958cc",
+            "sourceColumn": "mta_tax",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "tip_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "78f56631-6b33-4995-bb07-3dffeb4d0d5c",
+            "sourceColumn": "tip_amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "tolls_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "5ed9fdd7-32a8-47a6-a783-1d8970fc7376",
+            "sourceColumn": "tolls_amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "improvement_surcharge",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "dde28d45-8f60-46a9-abdc-2ef8a9834297",
+            "sourceColumn": "improvement_surcharge",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "total_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "58a18841-c72f-46ed-80e4-1cdd779af6d9",
+            "sourceColumn": "total_amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "congestion_surcharge",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "3e5b3e84-7b10-4e13-b0a8-3fd6f8d31101",
+            "sourceColumn": "congestion_surcharge",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Airport_fee",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d061ed03-06fe-40f7-b33d-13d0073612db",
+            "sourceColumn": "Airport_fee",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "trep_Duration",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "DATEDIFF('yellow_tripdata_2024-08'[trip_pickup_time], 'yellow_tripdata_2024-08'[trip_dropoff_time], SECOND)",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "e06ed827-825d-41d1-8dca-4cac02ce4a2f",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "Time_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "SWITCH(",
+              "    TRUE(),",
+              "    HOUR('yellow_tripdata_2024-08'[trip_pickup_time]) >= 0 && HOUR('yellow_tripdata_2024-08'[trip_pickup_time]) < 6, \"Nuit\",",
+              "    HOUR('yellow_tripdata_2024-08'[trip_pickup_time]) >= 6 && HOUR('yellow_tripdata_2024-08'[trip_pickup_time]) < 12, \"Matin\",",
+              "    HOUR('yellow_tripdata_2024-08'[trip_pickup_time]) >= 12 && HOUR('yellow_tripdata_2024-08'[trip_pickup_time]) < 18, \"Après-midi\",",
+              "    HOUR('yellow_tripdata_2024-08'[trip_pickup_time]) >= 18 && HOUR('yellow_tripdata_2024-08'[trip_pickup_time]) <= 23, \"Soir\"",
+              ")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "31c0e0bc-04b2-4550-97c4-0e72b138ca39",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "trep_day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "FORMAT('yellow_tripdata_2024-08'[trip_pickup_date], \"dddd\")",
+              ""
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "6de79261-5e40-4cb9-8b85-0e22d5f103a4",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "trep_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "IF([trep_Duration] < 900, \"Court\", \"Long\")",
+            "isDataTypeInferred": true,
+            "lineageTag": "56e564c6-9db4-4f4e-b1d3-5d5cbef60488",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "trep_profit_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "SWITCH(TRUE(), ",
+              "    'yellow_tripdata_2024-08'[total_amount] <= 100, \"Faible\", ",
+              "    'yellow_tripdata_2024-08'[total_amount]  <= 500, \"Moyen\", ",
+              "    \"Élevé\")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "f10fee0e-c488-4c52-8c55-f39c2f4423d3",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "trip_pickup_date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "b3b408d3-aa5e-4c43-9891-07c150683226",
+            "sourceColumn": "trip_pickup_date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_2f74ae8f-5b48-4e1d-9a12-fda8de80b0c4"
+                },
+                "isDefault": true,
+                "relationship": "2ac15905-b7a3-4eca-9d32-265e62454a2e"
+              }
+            ]
+          },
+          {
+            "name": "trip_pickup_time",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Time"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Time",
+            "lineageTag": "b7d1d0e2-bb5a-42ef-a9b8-844f2da20f07",
+            "sourceColumn": "trip_pickup_time",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trip_dropoff_date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "afa72fcd-5071-469f-855b-6d975bf42847",
+            "sourceColumn": "trip_dropoff_date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_6fc51d6e-1aa9-4f84-b40c-b795524e9850"
+                },
+                "isDefault": true,
+                "relationship": "4f8fda1e-3372-42ab-8676-da5512d058a9"
+              }
+            ]
+          },
+          {
+            "name": "trip_dropoff_time",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Time"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Time",
+            "lineageTag": "873c9443-0521-436f-8657-91e25fafce35",
+            "sourceColumn": "trip_dropoff_time",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "85151ff2-3584-4cff-95e6-944664166165",
+        "measures": [
+          {
+            "name": "AvgPassengerCount",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "AVERAGE('yellow_tripdata_2024-08'[passenger_count])",
+            "lineageTag": "e396f5f3-6ccd-4ea8-b612-72b6f26f0355"
+          },
+          {
+            "name": "AvgTripDistance",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "AVERAGE('yellow_tripdata_2024-08'[trip_distance])",
+            "lineageTag": "681914b4-a27d-4e41-89a5-8c496ffb9551"
+          },
+          {
+            "name": "AvgTotaleAmount",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "AVERAGE('yellow_tripdata_2024-08'[total_amount])",
+            "lineageTag": "6fa2d6c4-b753-4702-b8ae-1adb4ad1559d"
+          },
+          {
+            "name": "AvgTripDuration",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "AVERAGE('yellow_tripdata_2024-08'[trep_Duration])",
+            "lineageTag": "47fc75c8-6ea7-40db-ab60-1fce7c0e33d8"
+          },
+          {
+            "name": "MedianPassengerCount",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MEDIAN('yellow_tripdata_2024-08'[passenger_count])",
+            "lineageTag": "53a225fb-0456-4d92-9236-f52c8d1604de"
+          },
+          {
+            "name": "MedianTripDistance",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MEDIAN('yellow_tripdata_2024-08'[trip_distance])",
+            "lineageTag": "1253b1b0-cdc1-4024-a834-48b361200c3c"
+          },
+          {
+            "name": "MedianTotaleAmount",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MEDIAN('yellow_tripdata_2024-08'[total_amount])",
+            "lineageTag": "1e08c26c-23e3-4fe8-8427-e21f96804d63"
+          },
+          {
+            "name": "MedianTripDuration",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MEDIAN('yellow_tripdata_2024-08'[trep_Duration])",
+            "lineageTag": "a4db7fbd-d00b-49fb-b0f0-56cb85ab748d"
+          },
+          {
+            "name": "VarPassengerCount",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "VAR.P('yellow_tripdata_2024-08'[passenger_count])",
+            "lineageTag": "d9178069-07eb-4d14-8e92-f6192b15b83f"
+          },
+          {
+            "name": "VarTripDistance",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "VAR.P('yellow_tripdata_2024-08'[trip_distance])",
+            "lineageTag": "09b05d86-f122-48ca-a495-861d6ab45809"
+          },
+          {
+            "name": "VarTotaleAmount",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "VAR.P('yellow_tripdata_2024-08'[total_amount])",
+            "lineageTag": "7bbb16be-0c92-4fe4-8585-82d11c51aa02"
+          },
+          {
+            "name": "VarTripDuration",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "VAR.P('yellow_tripdata_2024-08'[trep_Duration])",
+            "lineageTag": "d8522d00-680a-49fe-9dbc-5f94431117c5"
+          },
+          {
+            "name": "STDEVPassengerCount",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "STDEV.P('yellow_tripdata_2024-08'[passenger_count])",
+            "lineageTag": "863db199-bede-428b-bb98-f567145c0478"
+          },
+          {
+            "name": "STDEVTripDistance",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "STDEV.P('yellow_tripdata_2024-08'[trip_distance])",
+            "lineageTag": "690181c2-d649-48e6-a795-48f25265d3da"
+          },
+          {
+            "name": "STDEVTotaleAmount",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "STDEV.P('yellow_tripdata_2024-08'[total_amount])",
+            "lineageTag": "0663414c-5e68-462e-9cad-1d959d425e77"
+          },
+          {
+            "name": "STDEVTripDuration",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "STDEV.P('yellow_tripdata_2024-08'[trep_Duration])",
+            "lineageTag": "dad72bb0-8fa1-4410-b7a7-0e563c7dcea6"
+          },
+          {
+            "name": "RangePassengerCount",
+            "expression": "MAX('yellow_tripdata_2024-08'[passenger_count]) - MIN('yellow_tripdata_2024-08'[passenger_count])",
+            "formatString": "0",
+            "lineageTag": "7837e7fd-e04f-48ce-8f0b-10c3117bcee7"
+          },
+          {
+            "name": "RangeTripDistance",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MAX('yellow_tripdata_2024-08'[trip_distance]) - MIN('yellow_tripdata_2024-08'[trip_distance])",
+            "lineageTag": "5ecbba7c-9aaf-4d64-a458-79bf2b6ef8ad"
+          },
+          {
+            "name": "RangeTotaleAmount",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MAX('yellow_tripdata_2024-08'[total_amount]) - MIN('yellow_tripdata_2024-08'[total_amount])",
+            "lineageTag": "1590c663-62d7-4267-b20a-88ee5334217b"
+          },
+          {
+            "name": "RangeTripDuration",
+            "expression": "MAX('yellow_tripdata_2024-08'[trep_Duration]) - MIN('yellow_tripdata_2024-08'[trep_Duration])",
+            "formatString": "0",
+            "lineageTag": "46b164ff-a9c9-4075-8c96-bebcf24df7d6"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "yellow_tripdata_2024-08",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Parquet.Document(File.Contents(\"C:\\Users\\yahya\\Desktop\\licence.AI\\S5\\A.D.C\\Projet\\yellow_tripdata_transformation_v1.2\\yellow_tripdata_2024-08.parquet\"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null]),",
+                "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([VendorID] = 2)),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [fare_amount] > 0),",
+                "    #\"Filtered Rows2\" = Table.SelectRows(#\"Filtered Rows1\", each ([mta_tax] = 0.5)),",
+                "    #\"Filtered Rows3\" = Table.SelectRows(#\"Filtered Rows2\", each [extra] >= 0.5),",
+                "    #\"Filtered Rows4\" = Table.SelectRows(#\"Filtered Rows3\", each [trip_distance] >= 0.2),",
+                "    #\"Filtered Rows5\" = Table.SelectRows(#\"Filtered Rows4\", each ([passenger_count] <> 0)),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Filtered Rows5\",0,2.5,Replacer.ReplaceValue,{\"congestion_surcharge\"}),",
+                "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",1,0.3,Replacer.ReplaceValue,{\"improvement_surcharge\"}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Replaced Value1\",{\"VendorID\"}),",
+                "    #\"Split Column by Delimiter\" = Table.SplitColumn(Table.TransformColumnTypes(#\"Removed Columns\", {{\"tpep_pickup_datetime\", type text}}, \"en-US\"), \"tpep_pickup_datetime\", Splitter.SplitTextByEachDelimiter({\" \"}, QuoteStyle.Csv, false), {\"tpep_pickup_datetime.1\", \"tpep_pickup_datetime.2\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Split Column by Delimiter\",{{\"tpep_pickup_datetime.1\", type date}, {\"tpep_pickup_datetime.2\", type time}}),",
+                "    #\"Split Column by Delimiter1\" = Table.SplitColumn(Table.TransformColumnTypes(#\"Changed Type\", {{\"tpep_dropoff_datetime\", type text}}, \"en-US\"), \"tpep_dropoff_datetime\", Splitter.SplitTextByEachDelimiter({\" \"}, QuoteStyle.Csv, false), {\"tpep_dropoff_datetime.1\", \"tpep_dropoff_datetime.2\"}),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Split Column by Delimiter1\",{{\"tpep_dropoff_datetime.1\", type date}, {\"tpep_dropoff_datetime.2\", type time}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type1\",{{\"tpep_pickup_datetime.1\", \"trip_pickup_date\"}, {\"tpep_pickup_datetime.2\", \"trip_pickup_time\"}, {\"tpep_dropoff_datetime.1\", \"trip_dropoff_date\"}, {\"tpep_dropoff_datetime.2\", \"trip_dropoff_time\"}})",
+                "in",
+                "    #\"Renamed Columns\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DateTableTemplate_5971b64d-14ff-436d-b60e-e0edaa5af229",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "c1d0f8df-0af1-47b3-9860-b4c8459c86e8",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "9e68458c-c593-4145-b23d-f0407aef8f1f",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "0958ed10-2e35-4c99-a42f-c056fdca337b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "edecdd8c-e727-45e0-bba6-8dc264f7554d",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "2a9092f8-d187-49d0-a7a3-bfff3cf9cc36",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "a1a56607-ef56-4c2c-841f-c91f29b02542",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "82bc7ec1-d50f-4706-82b1-24cf76536dc7",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "6aa7597b-472e-4023-8cf6-ae1023cd51cd",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "7164eda2-5306-4933-b7de-7d434b7e84aa",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "9658f0b1-5855-4fa1-be8c-89272eb49bda",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "9c5a2678-c9b1-4c74-8a38-e043bf0d97e0",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "961af502-04db-4d10-8b0e-5a5c5e415e38"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "8d1d8b51-c455-4d36-ad9b-975054a898dd",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_5971b64d-14ff-436d-b60e-e0edaa5af229",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "yellow_tripdata_2020-08",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Exception"
+          }
+        ],
+        "columns": [
+          {
+            "name": "passenger_count",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "3ec29523-700a-4e76-991c-544ce976eb3a",
+            "sourceColumn": "passenger_count",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "trip_distance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "99238b7c-3758-4fde-8d0b-b603495fc4f7",
+            "sourceColumn": "trip_distance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "RatecodeID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "970afe08-f903-4251-b98b-7b7eae185ef1",
+            "sourceColumn": "RatecodeID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "store_and_fwd_flag",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "42f31664-65c3-4ef1-93b4-b1e24dbe2094",
+            "sourceColumn": "store_and_fwd_flag",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "PULocationID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e14af6bc-e811-494e-bd97-b5639ae90063",
+            "sourceColumn": "PULocationID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "DOLocationID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "7dfd3e02-d080-47b5-9af6-a28a75c6e310",
+            "sourceColumn": "DOLocationID",
+            "summarizeBy": "count"
+          },
+          {
+            "name": "payment_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d31b83c5-dc7a-42de-9c58-632eea047d4f",
+            "sourceColumn": "payment_type",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "fare_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "a88963b4-ff6b-4d62-ae68-1d3d873f06ca",
+            "sourceColumn": "fare_amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "extra",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "eec113c8-f5ee-487e-b01b-59253c6166fb",
+            "sourceColumn": "extra",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "mta_tax",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b3287e32-0a53-4841-91a6-d5880b1c9760",
+            "sourceColumn": "mta_tax",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "tip_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b436ec50-2ec8-4c8b-b908-4874a828d3e2",
+            "sourceColumn": "tip_amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "tolls_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "952c1778-4275-435f-8afe-06a9fbfa6831",
+            "sourceColumn": "tolls_amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "improvement_surcharge",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "49dd1e5f-d492-43b8-987e-60ea0d4c6ca9",
+            "sourceColumn": "improvement_surcharge",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "total_amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "49a953ff-f500-414c-a59e-aac453c6e23d",
+            "sourceColumn": "total_amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "congestion_surcharge",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "0cf6d196-94a4-4143-85b5-2bda61471e04",
+            "sourceColumn": "congestion_surcharge",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "airport_fee",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d0952360-4774-4ac1-ab7a-d72cbbc50754",
+            "sourceColumn": "airport_fee",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "trep_Duration",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "DATEDIFF('yellow_tripdata_2020-08'[trip_pickup_time], 'yellow_tripdata_2020-08'[trip_dropoff_time], SECOND) ",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "7450a693-ee2b-4af5-bcac-c988b42bf6fb",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "trip_pickup_date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "cae6acea-f25d-49a4-8865-e32e3d5fcad3",
+            "sourceColumn": "trip_pickup_date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_058875f4-ea49-4f2f-821e-ba906c1fd486"
+                },
+                "isDefault": true,
+                "relationship": "14d2196d-e040-45cd-867f-84dca6cb3e78"
+              }
+            ]
+          },
+          {
+            "name": "trip_pickup_time",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Time"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Time",
+            "lineageTag": "3b4e3e55-9282-4c6d-8327-c8def7e0ce2b",
+            "sourceColumn": "trip_pickup_time",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "trip_dropoff_date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "76d1cca6-172f-49cf-a3fd-afff66526766",
+            "sourceColumn": "trip_dropoff_date",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_ea5e8fbd-1381-4862-af06-309829bc406c"
+                },
+                "isDefault": true,
+                "relationship": "af6da89c-58ea-41f8-b549-d293c5424dff"
+              }
+            ]
+          },
+          {
+            "name": "trip_dropoff_time",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Time"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Time",
+            "lineageTag": "e661dfa1-4137-4be6-ab18-7f25a4130a10",
+            "sourceColumn": "trip_dropoff_time",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "b260516b-4cef-45ad-b5ac-61bd7d55ffc1",
+        "partitions": [
+          {
+            "name": "yellow_tripdata_2020-08",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Parquet.Document(File.Contents(\"C:\\Users\\yahya\\Desktop\\licence.AI\\S5\\A.D.C\\Projet\\yellow_tripdata_transformation_v1.2\\yellow_tripdata_2020-08.parquet\"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null]),",
+                "    #\"Filtered Rows\" = Table.SelectRows(Source, each [fare_amount] > 0),",
+                "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each ([mta_tax] = 0.5)),",
+                "    #\"Filtered Rows2\" = Table.SelectRows(#\"Filtered Rows1\", each [extra] >= 0.5),",
+                "    #\"Filtered Rows3\" = Table.SelectRows(#\"Filtered Rows2\", each [trip_distance] >= 0.2),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Filtered Rows3\",0,0.3,Replacer.ReplaceValue,{\"improvement_surcharge\"}),",
+                "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",0,2.5,Replacer.ReplaceValue,{\"congestion_surcharge\"}),",
+                "    #\"Replaced Value2\" = Table.ReplaceValue(#\"Replaced Value1\",null,0,Replacer.ReplaceValue,{\"airport_fee\"}),",
+                "    #\"Replaced Value3\" = Table.ReplaceValue(#\"Replaced Value2\",null,1,Replacer.ReplaceValue,{\"passenger_count\"}),",
+                "    #\"Replaced Value4\" = Table.ReplaceValue(#\"Replaced Value3\",0,1,Replacer.ReplaceValue,{\"passenger_count\"}),",
+                "    #\"Filtered Rows4\" = Table.SelectRows(#\"Replaced Value4\", each ([RatecodeID] <> null)),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Filtered Rows4\",{\"VendorID\"}),",
+                "    #\"Split Column by Delimiter\" = Table.SplitColumn(Table.TransformColumnTypes(#\"Removed Columns\", {{\"tpep_pickup_datetime\", type text}}, \"en-US\"), \"tpep_pickup_datetime\", Splitter.SplitTextByEachDelimiter({\" \"}, QuoteStyle.Csv, false), {\"tpep_pickup_datetime.1\", \"tpep_pickup_datetime.2\"}),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Split Column by Delimiter\",{{\"tpep_pickup_datetime.1\", type date}, {\"tpep_pickup_datetime.2\", type time}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"tpep_pickup_datetime.1\", \"trip_pickup_date\"}, {\"tpep_pickup_datetime.2\", \"trip_pickup_time\"}}),",
+                "    #\"Split Column by Delimiter1\" = Table.SplitColumn(Table.TransformColumnTypes(#\"Renamed Columns\", {{\"tpep_dropoff_datetime\", type text}}, \"en-US\"), \"tpep_dropoff_datetime\", Splitter.SplitTextByEachDelimiter({\" \"}, QuoteStyle.Csv, false), {\"tpep_dropoff_datetime.1\", \"tpep_dropoff_datetime.2\"}),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Split Column by Delimiter1\",{{\"tpep_dropoff_datetime.1\", type date}, {\"tpep_dropoff_datetime.2\", type time}}),",
+                "    #\"Renamed Columns1\" = Table.RenameColumns(#\"Changed Type1\",{{\"tpep_dropoff_datetime.1\", \"trip_dropoff_date\"}, {\"tpep_dropoff_datetime.2\", \"trip_dropoff_time\"}})",
+                "in",
+                "    #\"Renamed Columns1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Treps_by_category",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "3fb57c2448f44ebcb57e301dd900fced"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Time_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "7942505f-6384-44ac-8018-e6bdf5c66c0d",
+            "sourceColumn": "yellow_tripdata_2024-08[Time_category]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Number_of_Trips",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "6107a59c-1cf3-4f47-8345-bb11c6def99f",
+            "sourceColumn": "[Number_of_Trips]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "890f6342-d95b-4c85-a703-4f8829bcc281",
+        "partitions": [
+          {
+            "name": "Treps_by_category",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "SUMMARIZE(",
+                "    'yellow_tripdata_2024-08',",
+                "    'yellow_tripdata_2024-08'[Time_category],",
+                "    \"Number_of_Trips\", COUNTROWS('yellow_tripdata_2024-08')",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_2f74ae8f-5b48-4e1d-9a12-fda8de80b0c4",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "bfc06396-2a09-4e7d-ad96-d9e9c6fdf2e1",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "b859db8e-2c54-4525-bb38-9d4eac5d44a9",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "94b11089-673c-4e94-954d-19e17959934c",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "4203b5da-363f-488c-9d28-92e82157b863",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "41dfdd47-93aa-4f68-926f-48863c83a311",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "2199f44e-8bd9-4f1e-814c-bb8e80e2e820",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "36354671-cc6b-4577-b9b1-5bb908ec6096",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "f81b44b1-6c55-4dc2-a31d-dcc0c3c94674",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "c58c44ee-34d0-41d3-b511-792ad5684c01",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "41efcdbb-bf3c-4b1f-be70-d98755e6f711",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "e471fb51-6a7d-4c9e-9f89-399719705f72",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "0d5e5b5b-a31d-4e32-aef8-be7bd89acf6d"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "a9060b48-64eb-4ae0-b86c-b33d761e4b1f",
+        "partitions": [
+          {
+            "name": "LocalDateTable_2f74ae8f-5b48-4e1d-9a12-fda8de80b0c4",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('yellow_tripdata_2024-08'[trip_pickup_date])), 1, 1), Date(Year(MAX('yellow_tripdata_2024-08'[trip_pickup_date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "LocalDateTable_6fc51d6e-1aa9-4f84-b40c-b795524e9850",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "cb1ec017-078a-4f48-8e0d-e3ef9bbc2fb4",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "ffa13123-3f9b-42cd-82df-eccb7ccf18ff",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "10cacfdf-5f08-450b-948d-ceb95d907ab4",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "11dc24d7-1014-4050-a14e-53414b8ad7e3",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "8b835789-9248-4844-82a3-3ab6faa28ae4",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "64d66d54-cefe-444a-9425-006afc2ee1fd",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "fd19a237-4428-47a0-a588-edac519f8d7f",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "01a573db-a470-4a27-a1e5-c5581beb9b54",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "c9e53039-733f-47e4-bae2-59b283402534",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "8d153c4c-df39-498f-bf57-6fc2a1c5df5c",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "286433e8-b264-4321-ae7a-99a92e8ca47c",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "9e54516b-bdb1-40d1-8497-212dd0864129"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "b89bf7b0-775c-4923-8049-bbb78d3c6bca",
+        "partitions": [
+          {
+            "name": "LocalDateTable_6fc51d6e-1aa9-4f84-b40c-b795524e9850",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('yellow_tripdata_2024-08'[trip_dropoff_date])), 1, 1), Date(Year(MAX('yellow_tripdata_2024-08'[trip_dropoff_date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "LocalDateTable_058875f4-ea49-4f2f-821e-ba906c1fd486",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "ae6d4fd0-e9b8-41b1-8da6-8bf4bd72f52a",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "c275b096-d866-403a-8b22-d629798e6bcd",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "50b1226f-ce56-4a34-94ce-ac3d9c939db8",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "5bcb9d30-757a-402d-9561-710c4a824108",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "0118307a-c765-479f-8f8b-88802174f17d",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "45d8a7c8-7f21-4fda-a106-6e54a2cad4c8",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "c7ee6330-9150-48c7-8b5b-4325f2d42e4d",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "bab19ece-058a-41e5-9801-6701e25d4c61",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "49c8e121-186b-45d2-8ec8-b0f863703f79",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "73569650-4553-4f36-b408-73b5cafe6e20",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "99cd46dc-b5ad-43dd-9b94-877f90b04599",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "20d79353-2a10-47f9-91b8-e422053cbe62"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "56d1c106-1f1d-433f-860d-1dfdc511bb76",
+        "partitions": [
+          {
+            "name": "LocalDateTable_058875f4-ea49-4f2f-821e-ba906c1fd486",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('yellow_tripdata_2020-08'[trip_pickup_date])), 1, 1), Date(Year(MAX('yellow_tripdata_2020-08'[trip_pickup_date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "LocalDateTable_ea5e8fbd-1381-4862-af06-309829bc406c",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "b9ce1c8b-ec0d-46ae-b5d4-9a75865a7a85",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "79c250b6-5674-43d1-8e00-7ad427d4803e",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "b5d567d6-f084-44cc-bf60-f26cc7c2fdc6",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "fbcd7ee9-0442-4367-a4b9-3bdb300ebab4",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "69f8a78c-3449-4a86-be5b-fb6f0f41c82d",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "44584e5e-219e-475b-8306-fecad63eb1f2",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "94857623-d2f2-43b4-9292-049ae1b4bad3",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "3a0c1c79-b031-4c2b-9a23-c26458d6d21c",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "f47cb0c9-11c0-4f8e-8606-8c4488ebcd8c",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "c83d1d57-3af9-44cc-8047-8f6d96bc624c",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "b928e320-032c-461b-8666-2c751b585d94",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "2b2d9ccb-7339-4b30-ab05-d7eab40c43a1"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "b0fa77be-08f1-4ec3-af6f-89e619e2bd6c",
+        "partitions": [
+          {
+            "name": "LocalDateTable_ea5e8fbd-1381-4862-af06-309829bc406c",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('yellow_tripdata_2020-08'[trip_dropoff_date])), 1, 1), Date(Year(MAX('yellow_tripdata_2020-08'[trip_dropoff_date])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "RateCodeSummary",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "8d47a58679434b33ac5d723760fabc96"
+          }
+        ],
+        "columns": [
+          {
+            "name": "RatecodeID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "4afb9037-8fe6-4f9e-928a-519e40da86a2",
+            "sourceColumn": "yellow_tripdata_2024-08[RatecodeID]",
+            "summarizeBy": "count",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Absolute frequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "2660fd03-ab9f-4f9d-bb9a-ea4856fe6740",
+            "sourceColumn": "[Absolute frequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND( DIVIDE(RateCodeSummary[Absolute frequency], SUM(RateCodeSummary[Absolute frequency])) * 100, 2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "de7441e6-b775-498e-9906-57fddf379d49",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumultativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "CALCULATE(SUM(RateCodeSummary[Absolute frequency]), FILTER(RateCodeSummary,RateCodeSummary[RatecodeID] <= EARLIER(RateCodeSummary[RatecodeID])))",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "05630930-b785-4387-bdf2-4671708e899c",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "61f2b738-efe6-4f5d-8fc8-e64694172b66",
+        "partitions": [
+          {
+            "name": "RateCodeSummary",
+            "mode": "import",
+            "source": {
+              "expression": "SUMMARIZE('yellow_tripdata_2024-08','yellow_tripdata_2024-08'[RatecodeID],\"Absolute frequency\",COUNTROWS('yellow_tripdata_2024-08'))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TripTypeSummary",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "15e570f21d304ff28dcdb87233661482"
+          }
+        ],
+        "columns": [
+          {
+            "name": "trep_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "6887d193-bf55-463f-bf90-a8169c721578",
+            "sourceColumn": "yellow_tripdata_2024-08[trep_type]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "absolute frequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "0b272025-ab83-4f36-8c1c-743a5752fd9e",
+            "sourceColumn": "[absolute frequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND(DIVIDE(TripTypeSummary[absolute frequency], SUM(TripTypeSummary[absolute frequency])) * 100, 2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "c6807b54-2d9a-4c93-a071-d45809c0d9cf",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "SWITCH(",
+              "    TripTypeSummary[trep_type],",
+              "    \"Court\", 1,",
+              "    2",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "448ffb7e-54e8-4668-bba0-a280dde021ee",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumltativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "CALCULATE(",
+              "    SUM(TripTypeSummary[absolute frequency]),",
+              "    FILTER(",
+              "        TripTypeSummary,",
+              "        TripTypeSummary[Order] <= EARLIER(TripTypeSummary[Order]",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "2c33d9b0-2d5c-4ccd-b39c-9913ffdc60cc",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "5cf79678-3acf-4269-862e-9a5d29d150cd",
+        "partitions": [
+          {
+            "name": "TripTypeSummary",
+            "mode": "import",
+            "source": {
+              "expression": "SUMMARIZE('yellow_tripdata_2024-08','yellow_tripdata_2024-08'[trep_type],\"absolute frequency\", COUNTROWS('yellow_tripdata_2024-08'))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TripProfitSummary",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "6cc0c0bd78ab4b8dbcc4fa2a25ce6a4c"
+          }
+        ],
+        "columns": [
+          {
+            "name": "trep_profit_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "277a9665-f56d-4308-9e8e-f94e05397b00",
+            "sourceColumn": "yellow_tripdata_2024-08[trep_profit_category]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "absolute frequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "df21d678-ef60-450d-b5ca-bf0e992d1611",
+            "sourceColumn": "[absolute frequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND(DIVIDE(TripProfitSummary[absolute frequency], SUM(TripProfitSummary[absolute frequency])) * 100, 2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "1d12b17e-cfad-479e-bec3-bd6ec01a2a4d",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "SWITCH(",
+              "            TripProfitSummary[trep_profit_category],",
+              "            \"Faible\", 1,",
+              "            \"Moyen\", 2,",
+              "            3",
+              "            )"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "bf59931e-b7c6-4093-84ed-0f92ab5accee",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumltativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "CALCULATE(",
+              "        SUM(TripProfitSummary[absolute frequency]),",
+              "        FILTER(",
+              "            TripProfitSummary,",
+              "            TripProfitSummary[Order] <= EARLIER(TripProfitSummary[Order]",
+              "            )",
+              "        )",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "e01179ee-2c48-4397-9f14-82fd9880e08f",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "d10e572a-7489-4171-a862-2e201c434e6e",
+        "partitions": [
+          {
+            "name": "TripProfitSummary",
+            "mode": "import",
+            "source": {
+              "expression": "SUMMARIZE('yellow_tripdata_2024-08', 'yellow_tripdata_2024-08'[trep_profit_category], \"absolute frequency\", COUNTROWS('yellow_tripdata_2024-08'))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "PaymentTypeSummary",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "89e284352bf549418ad2c3a8cd323cd9"
+          }
+        ],
+        "columns": [
+          {
+            "name": "payment_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "fc650e9e-8d2d-4463-a9e3-beac2dee2a4e",
+            "sourceColumn": "yellow_tripdata_2024-08[payment_type]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "absolute frequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "68fe50ff-21d0-435e-b892-9341839bf5a8",
+            "sourceColumn": "[absolute frequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND(DIVIDE(PaymentTypeSummary[absolute frequency], SUM(PaymentTypeSummary[absolute frequency])) * 100, 2)",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "fc96bc35-24d1-48c0-a464-c5ee3bbb49c1",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumulativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(PaymentTypeSummary[absolute frequency]), ",
+              "    FILTER(",
+              "        PaymentTypeSummary, ",
+              "        PaymentTypeSummary[payment_type] <= EARLIER(PaymentTypeSummary[payment_type])",
+              "    )",
+              ")",
+              "",
+              ""
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "217904df-d413-4ed9-ad42-9037a02fcbbb",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "eaa44272-540d-418f-b04c-c52383f819a6",
+        "partitions": [
+          {
+            "name": "PaymentTypeSummary",
+            "mode": "import",
+            "source": {
+              "expression": "SUMMARIZE('yellow_tripdata_2024-08', 'yellow_tripdata_2024-08'[payment_type],\"absolute frequency\",COUNTROWS('yellow_tripdata_2024-08'))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TimeCategorySummary",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "2502b69c61cf4150a4a5c8c828fe7b37"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Time_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "2e59e60d-5f28-4c62-81a7-d279b976b6be",
+            "sourceColumn": "yellow_tripdata_2024-08[Time_category]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "absolute frequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "cc2361d5-c745-49fa-907b-91509b14b3b0",
+            "sourceColumn": "[absolute frequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND(  DIVIDE(TimeCategorySummary[absolute frequency],         SUM(TimeCategorySummary[absolute frequency])) * 100,2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "3df0cff9-99f6-4f7c-9b20-4f1c0dfd2a7a",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "",
+              "SWITCH(",
+              "    TimeCategorySummary[Time_category],",
+              "    \"matin\", 1,",
+              "    \"après-midi\", 2,",
+              "    \"soir\", 3,",
+              "    \"nuit\", 4,",
+              "    BLANK()",
+              "    )"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "f85c193a-e314-43de-a3aa-dcda48122c2b",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumltativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "CALCULATE(SUM(TimeCategorySummary[absolute frequency]), ",
+              "    FILTER(",
+              "        TimeCategorySummary,",
+              "        TimeCategorySummary[Order] <= EARLIER(TimeCategorySummary[Order])",
+              "    ))"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "507a2c3f-6004-4d13-a03d-a06f77a152df",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "96a95fe7-30d8-4864-8ed4-f0c6f8ba794f",
+        "partitions": [
+          {
+            "name": "TimeCategorySummary",
+            "mode": "import",
+            "source": {
+              "expression": "SUMMARIZE('yellow_tripdata_2024-08','yellow_tripdata_2024-08'[Time_category],\"absolute frequency\",COUNTROWS('yellow_tripdata_2024-08'))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TripDaySummary",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "adbf3e2d44684062bda46a72671dd87a"
+          }
+        ],
+        "columns": [
+          {
+            "name": "trep_day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "6ba37d08-e0ee-43cf-b0ab-f3ec7154b4d1",
+            "sourceColumn": "yellow_tripdata_2024-08[trep_day]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "absolute frequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "167db14a-ab7b-47de-9978-7533abe33d6c",
+            "sourceColumn": "[absolute frequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND(DIVIDE(TripDaySummary[absolute frequency], SUM(TripDaySummary[absolute frequency])) * 100, 2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "8e5ee40f-2f1c-46b1-a65a-824f8c59c3cb",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "SWITCH(",
+              "    TripDaySummary[trep_day],",
+              "    \"monday\", 1,",
+              "    \"Tuesday\", 2,",
+              "    \"Wednesday\", 3,",
+              "    \"Thursday\", 4,",
+              "    \"Friday\", 5,",
+              "    \"Saturday\", 6,",
+              "    \"Sunday\", 7,",
+              "    -1",
+              "    )"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "0d228fad-ac2a-4d3a-974d-981428de51a3",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumultativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "CALCULATE(SUM(TripDaySummary[absolute frequency]),",
+              "    FILTER(",
+              "        TripDaySummary,",
+              "        TripDaySummary[Order] <= EARLIER(TripDaySummary[Order])",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "d5d52701-4ec4-4ffe-8aea-3ca00d6f93d1",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "769cbfd5-beb4-4698-a524-48949e43705a",
+        "partitions": [
+          {
+            "name": "TripDaySummary",
+            "mode": "import",
+            "source": {
+              "expression": "SUMMARIZE('yellow_tripdata_2024-08', 'yellow_tripdata_2024-08'[trep_day],\"absolute frequency\",COUNTROWS('yellow_tripdata_2024-08'))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "PickUpIDSummary",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "15a5a4cf68644cac81d4bf91ecd5189e"
+          }
+        ],
+        "columns": [
+          {
+            "name": "PULocationID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "591d7ff4-d84f-4e53-8ba4-1e14beee77ba",
+            "sourceColumn": "yellow_tripdata_2024-08[PULocationID]",
+            "summarizeBy": "count",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "frequence_absolut",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "4da7b963-b3ea-4a3f-a80c-3006f5329777",
+            "sourceColumn": "[frequence_absolut]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": [
+              "ROUND(",
+              "    DIVIDE(",
+              "        PickUpIDSummary[frequence_absolut],",
+              "        SUM(PickUpIDSummary[frequence_absolut])",
+              "    ) * 100,",
+              "    2",
+              ")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "0a56f73d-0e4c-45e2-81de-deda2d2003e0",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "36da7f8e-035e-4f8e-9f95-32328b51730c",
+        "partitions": [
+          {
+            "name": "PickUpIDSummary",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "SUMMARIZE(",
+                "                    'yellow_tripdata_2024-08',",
+                "                    'yellow_tripdata_2024-08'[PULocationID],",
+                "                    \"frequence_absolut\",",
+                "                    COUNTROWS('yellow_tripdata_2024-08')",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DropOffIDSummary",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "4153eef2167b4892a3884731bd695bfb"
+          }
+        ],
+        "columns": [
+          {
+            "name": "DOLocationID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "eab38996-76b8-4408-bcc1-9c7e836fdf53",
+            "sourceColumn": "yellow_tripdata_2024-08[DOLocationID]",
+            "summarizeBy": "count",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "frequence_absolut",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "4443c6bb-24f3-4b9d-b5a9-e975cadc4be7",
+            "sourceColumn": "[frequence_absolut]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": [
+              "ROUND(DIVIDE(",
+              "                        DropOffIDSummary[frequence_absolut],",
+              "                        SUM(DropOffIDSummary[frequence_absolut]), 0",
+              " ) * 100, 2",
+              ")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "07f9999e-8f58-4129-9513-b45bd1b52835",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "b78039bf-dc03-4148-85c0-7bdb9a99ec6e",
+        "partitions": [
+          {
+            "name": "DropOffIDSummary",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "SUMMARIZE(",
+                "                    'yellow_tripdata_2024-08',",
+                "                    'yellow_tripdata_2024-08'[DOLocationID],",
+                "                    \"frequence_absolut\",",
+                "                    COUNTROWS('yellow_tripdata_2024-08')",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

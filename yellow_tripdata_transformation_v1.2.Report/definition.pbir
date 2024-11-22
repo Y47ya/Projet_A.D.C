@@ -1,0 +1,9 @@
+{
+  "version": "4.0",
+  "datasetReference": {
+    "byPath": {
+      "path": "../yellow_tripdata_transformation_v1.2.SemanticModel"
+    },
+    "byConnection": null
+  }
+}

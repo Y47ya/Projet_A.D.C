@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "yellow_tripdata_transformation_v1.2"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7e9c689a-2333-401a-b9b8-460870b46483"
+  }
+}
