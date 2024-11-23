@@ -36,94 +36,22 @@
         },
         {
           "location": {
+            "x": 3124,
+            "y": 50
+          },
+          "nodeIndex": "Treps_by_category_2020",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
             "x": 568,
             "y": 50
           },
-          "nodeIndex": "Treps_by_category",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 852,
-            "y": 50
-          },
-          "nodeIndex": "RateCodeSummary",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 1136,
-            "y": 50
-          },
-          "nodeIndex": "TripTypeSummary",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 1420,
-            "y": 50
-          },
-          "nodeIndex": "TripProfitSummary",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 1704,
-            "y": 50
-          },
-          "nodeIndex": "PaymentTypeSummary",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 1988,
-            "y": 50
-          },
-          "nodeIndex": "TimeCategorySummary",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 2272,
-            "y": 50
-          },
-          "nodeIndex": "TripDaySummary",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 2556,
-            "y": 50
-          },
-          "nodeIndex": "PickUpIDSummary",
+          "nodeIndex": "Treps_by_category_2024",
           "size": {
             "height": 200,
             "width": 234
@@ -135,7 +63,187 @@
             "x": 2840,
             "y": 50
           },
-          "nodeIndex": "DropOffIDSummary",
+          "nodeIndex": "DropOffIDSummary2024",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1704,
+            "y": 50
+          },
+          "nodeIndex": "PaymentTypeSummary2024",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2556,
+            "y": 50
+          },
+          "nodeIndex": "PickUpIDSummary2024",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 50
+          },
+          "nodeIndex": "RateCodeSummary2024",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1988,
+            "y": 50
+          },
+          "nodeIndex": "TimeCategorySummary2024",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 50
+          },
+          "nodeIndex": "TripDaySummary2024",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 50
+          },
+          "nodeIndex": "TripProfitSummary2024",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 50
+          },
+          "nodeIndex": "TripTypeSummary2024",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3408,
+            "y": 50
+          },
+          "nodeIndex": "DropOffIDSummary2020",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3692,
+            "y": 50
+          },
+          "nodeIndex": "PaymentTypeSummary2020",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3976,
+            "y": 50
+          },
+          "nodeIndex": "PickUpIDSummary2020",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4260,
+            "y": 50
+          },
+          "nodeIndex": "RateCodeSummary2020",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4544,
+            "y": 50
+          },
+          "nodeIndex": "TimeCategorySummary2020",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4828,
+            "y": 50
+          },
+          "nodeIndex": "TripDaySummary2020",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5112,
+            "y": 50
+          },
+          "nodeIndex": "TripProfitSummary2020",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 5396,
+            "y": 50
+          },
+          "nodeIndex": "TripTypeSummary2020",
           "size": {
             "height": 200,
             "width": 234

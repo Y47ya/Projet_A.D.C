@@ -1,5 +1,5 @@
 {
-  "compatibilityLevel": 1550,
+  "compatibilityLevel": 1567,
   "model": {
     "annotations": [
       {
@@ -69,6 +69,14 @@
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_ea5e8fbd-1381-4862-af06-309829bc406c"
+      },
+      {
+        "name": "dd3ed6e9-d705-4ab7-80f6-301f8a4da868",
+        "fromColumn": "trip_pickup_time",
+        "fromTable": "yellow_tripdata_2024-08",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_9a553ad7-fbed-4804-a349-b0a10b677aeb"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -340,22 +348,6 @@
             "summarizeBy": "sum"
           },
           {
-            "name": "trep_Duration",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "expression": "DATEDIFF('yellow_tripdata_2024-08'[trip_pickup_time], 'yellow_tripdata_2024-08'[trip_dropoff_time], SECOND)",
-            "formatString": "0",
-            "isDataTypeInferred": true,
-            "lineageTag": "e06ed827-825d-41d1-8dca-4cac02ce4a2f",
-            "summarizeBy": "sum",
-            "type": "calculated"
-          },
-          {
             "name": "Time_category",
             "annotations": [
               {
@@ -466,17 +458,29 @@
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
-              },
+              }
+            ],
+            "changedProperties": [
               {
-                "name": "UnderlyingDateTimeDataType",
-                "value": "Time"
+                "property": "DataType"
               }
             ],
             "dataType": "dateTime",
             "formatString": "Long Time",
             "lineageTag": "b7d1d0e2-bb5a-42ef-a9b8-844f2da20f07",
             "sourceColumn": "trip_pickup_time",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variation",
+                "defaultHierarchy": {
+                  "hierarchy": "Date Hierarchy",
+                  "table": "LocalDateTable_9a553ad7-fbed-4804-a349-b0a10b677aeb"
+                },
+                "isDefault": true,
+                "relationship": "dd3ed6e9-d705-4ab7-80f6-301f8a4da868"
+              }
+            ]
           },
           {
             "name": "trip_dropoff_date",
@@ -524,6 +528,68 @@
             "lineageTag": "873c9443-0521-436f-8657-91e25fafce35",
             "sourceColumn": "trip_dropoff_time",
             "summarizeBy": "none"
+          },
+          {
+            "name": "trip_pickup_time_Corrected",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "FORMAT(IF(",
+              "    DATEDIFF('yellow_tripdata_2024-08'[trip_pickup_time], 'yellow_tripdata_2024-08'[trip_dropoff_time], SECOND) < 0,",
+              "    'yellow_tripdata_2024-08'[trip_dropoff_time],",
+              "    'yellow_tripdata_2024-08'[trip_pickup_time]",
+              "), \"h:mm:ss AM/PM\")",
+              ""
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "cae457d6-95a0-4000-9376-822ab7a3ef0a",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "trip_dropoff_time_Corrected",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "FORMAT(IF(",
+              "    DATEDIFF('yellow_tripdata_2024-08'[trip_pickup_time], 'yellow_tripdata_2024-08'[trip_dropoff_time], SECOND) < 0,",
+              "    'yellow_tripdata_2024-08'[trip_pickup_time],",
+              "    'yellow_tripdata_2024-08'[trip_dropoff_time]",
+              "), \"h:mm:ss AM/PM\")",
+              ""
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "6f0bd46c-9c3d-49d4-b733-91c504b43974",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "trep_Duration",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "DATEDIFF('yellow_tripdata_2024-08'[trip_pickup_time_Corrected], 'yellow_tripdata_2024-08'[trip_dropoff_time_Corrected], SECOND)",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "54cdf3c4-c180-48e8-8bd4-b62b4dcb97ff",
+            "summarizeBy": "sum",
+            "type": "calculated"
           }
         ],
         "lineageTag": "85151ff2-3584-4cff-95e6-944664166165",
@@ -746,7 +812,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Parquet.Document(File.Contents(\"C:\\Users\\yahya\\Desktop\\licence.AI\\S5\\A.D.C\\Projet\\yellow_tripdata_transformation_v1.2\\yellow_tripdata_2024-08.parquet\"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null]),",
+                "    Source = Parquet.Document(File.Contents(\"C:\\Users\\yahya\\Downloads\\yellow_tripdata_transformation_v1.3\\yellow_tripdata_2024-08.parquet\"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null]),",
                 "    #\"Filtered Rows\" = Table.SelectRows(Source, each ([VendorID] = 2)),",
                 "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each [fare_amount] > 0),",
                 "    #\"Filtered Rows2\" = Table.SelectRows(#\"Filtered Rows1\", each ([mta_tax] = 0.5)),",
@@ -1247,22 +1313,6 @@
             "summarizeBy": "sum"
           },
           {
-            "name": "trep_Duration",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "expression": "DATEDIFF('yellow_tripdata_2020-08'[trip_pickup_time], 'yellow_tripdata_2020-08'[trip_dropoff_time], SECOND) ",
-            "formatString": "0",
-            "isDataTypeInferred": true,
-            "lineageTag": "7450a693-ee2b-4af5-bcac-c988b42bf6fb",
-            "summarizeBy": "sum",
-            "type": "calculated"
-          },
-          {
             "name": "trip_pickup_date",
             "annotations": [
               {
@@ -1339,6 +1389,156 @@
             ]
           },
           {
+            "name": "trip_pickup_time_Corrected",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "FORMAT(",
+              "    IF(",
+              "        DATEDIFF('yellow_tripdata_2020-08'[trip_pickup_time], 'yellow_tripdata_2020-08'[trip_dropoff_time], SECOND) < 0,",
+              "        'yellow_tripdata_2020-08'[trip_dropoff_time],",
+              "        'yellow_tripdata_2020-08'[trip_pickup_time]",
+              "    ),",
+              "    \"h:mm:ss AM/PM\"",
+              ")",
+              "",
+              ""
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "c95a0e79-d743-4e75-b1c5-7bf132756c6b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "trip_dropoff_time_Corrected",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "FORMAT(",
+              "    IF(",
+              "        DATEDIFF('yellow_tripdata_2020-08'[trip_pickup_time], 'yellow_tripdata_2020-08'[trip_dropoff_time], SECOND) < 0,",
+              "        'yellow_tripdata_2020-08'[trip_pickup_time],",
+              "        'yellow_tripdata_2020-08'[trip_dropoff_time]",
+              "    ),",
+              "    \"h:mm:ss AM/PM\"",
+              "",
+              ")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "9dd12e3c-4f95-4459-9a16-010c2ec83643",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "trep_Duration",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "DATEDIFF('yellow_tripdata_2020-08'[trip_pickup_time_Corrected], 'yellow_tripdata_2020-08'[trip_dropoff_time_Corrected], SECOND) ",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "71edec18-f4fc-4634-86f3-64b7aa1c1fa1",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "trep_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "IF([trep_Duration] < 900, \"Court\", \"Long\")",
+            "isDataTypeInferred": true,
+            "lineageTag": "2716745b-ff09-4d96-acdf-4e4f27a5fa20",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Time_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "SWITCH(",
+              "    TRUE(),",
+              "    HOUR('yellow_tripdata_2020-08'[trip_pickup_time_Corrected]) >= 0 && ",
+              "    HOUR('yellow_tripdata_2020-08'[trip_pickup_time_Corrected]) < 6, \"Nuit\",",
+              "    HOUR('yellow_tripdata_2020-08'[trip_pickup_time_Corrected]) >= 6 && ",
+              "    HOUR('yellow_tripdata_2020-08'[trip_pickup_time_Corrected]) < 12, \"Matin\",",
+              "    HOUR('yellow_tripdata_2020-08'[trip_pickup_time_Corrected]) >= 12 && ",
+              "    HOUR('yellow_tripdata_2020-08'[trip_pickup_time_Corrected]) < 18, \"Après-midi\",",
+              "    HOUR('yellow_tripdata_2020-08'[trip_pickup_time_Corrected]) >= 18 && ",
+              "    HOUR('yellow_tripdata_2020-08'[trip_pickup_time_Corrected]) <= 23, \"Soir\"",
+              ")",
+              ""
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "4be11625-e181-43da-8236-a56d14f5cd34",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "trep_profit_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "SWITCH(",
+              "    TRUE(), ",
+              "    'yellow_tripdata_2020-08'[total_amount] <= 100, \"Faible\", ",
+              "    'yellow_tripdata_2020-08'[total_amount] <= 500, \"Moyen\", ",
+              "    \"Élevé\"",
+              ")",
+              ""
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "835959a9-a225-4a93-a151-8b256e4b2ab1",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "trep_day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "FORMAT('yellow_tripdata_2020-08'[trip_pickup_date], \"dddd\")",
+            "isDataTypeInferred": true,
+            "lineageTag": "6f3e2dff-7bb4-4a54-b474-b39cbda9f851",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
             "name": "trip_dropoff_time",
             "annotations": [
               {
@@ -1352,12 +1552,229 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Time",
-            "lineageTag": "e661dfa1-4137-4be6-ab18-7f25a4130a10",
+            "lineageTag": "08d265dd-ee40-41c4-bfe2-dc7adc3466b0",
             "sourceColumn": "trip_dropoff_time",
             "summarizeBy": "none"
           }
         ],
         "lineageTag": "b260516b-4cef-45ad-b5ac-61bd7d55ffc1",
+        "measures": [
+          {
+            "name": "AvgPassengerCount2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "AVERAGE('yellow_tripdata_2020-08'[passenger_count])",
+            "lineageTag": "103b29ec-3d33-4604-9dbe-928e5926eab4"
+          },
+          {
+            "name": "AvgTotalAmount2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "AVERAGE('yellow_tripdata_2020-08'[total_amount])",
+            "lineageTag": "b26485ff-5727-43e8-aa09-36999857cfc2"
+          },
+          {
+            "name": "AvgTripDistance2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "AVERAGE('yellow_tripdata_2020-08'[trip_distance])",
+            "lineageTag": "afba1ea8-3bf6-4815-aeb4-3ef6eb975bbe"
+          },
+          {
+            "name": "AvgTripDuration2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "AVERAGE('yellow_tripdata_2020-08'[trep_Duration])",
+            "lineageTag": "fdde790b-8c10-4268-a798-d2ea8a281ba3"
+          },
+          {
+            "name": "MedianPassengerCount2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MEDIAN('yellow_tripdata_2020-08'[passenger_count])",
+            "lineageTag": "66fe8b1c-c2fe-4430-95ab-b5ed3c0ec6d9"
+          },
+          {
+            "name": "MedianTotalAmount2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MEDIAN('yellow_tripdata_2020-08'[total_amount])",
+            "lineageTag": "3487ca5f-eb40-473b-bd4d-eda8b5fc1be7"
+          },
+          {
+            "name": "MedianTripDistance2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MEDIAN('yellow_tripdata_2020-08'[trip_distance])",
+            "lineageTag": "c0fe1546-6580-4d88-9232-02c76c9b52f9"
+          },
+          {
+            "name": "MedianTripDuration2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MEDIAN('yellow_tripdata_2020-08'[trep_Duration])",
+            "lineageTag": "ba2371e6-9a80-4246-8d3f-045f55307689"
+          },
+          {
+            "name": "VariancePassengerCount2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "VAR.P('yellow_tripdata_2020-08'[passenger_count])",
+            "lineageTag": "2fc9c292-9b43-4103-b8e5-3f63c7c10723"
+          },
+          {
+            "name": "VarianceTotalAmount2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "VAR.P('yellow_tripdata_2020-08'[total_amount])",
+            "lineageTag": "d2595bd3-2dfc-47b7-ab6c-958ce10067c0"
+          },
+          {
+            "name": "VarianceTripDistance",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "VAR.P('yellow_tripdata_2020-08'[trip_distance])",
+            "lineageTag": "4528ab3e-eb7b-4c1d-925e-31552c4daf77"
+          },
+          {
+            "name": "VarianceTripDuration2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "VAR.P('yellow_tripdata_2020-08'[trep_Duration])",
+            "lineageTag": "fd82c74b-5c00-4d4c-9086-4eeb94d30b4b"
+          },
+          {
+            "name": "STDEVPassengerCount2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "STDEV.P('yellow_tripdata_2020-08'[passenger_count])",
+            "lineageTag": "261e76f0-c9fb-4e2d-81f1-28a815b84780"
+          },
+          {
+            "name": "STDEVTotalAmount2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "STDEV.P('yellow_tripdata_2020-08'[passenger_count])",
+            "lineageTag": "37f792a3-a170-47d5-80c3-cf36d7ff08d3"
+          },
+          {
+            "name": "STDEVTripDistance2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "STDEV.P('yellow_tripdata_2020-08'[trip_distance])",
+            "lineageTag": "5eb42962-c676-47c7-ae41-f04ef0e69dae"
+          },
+          {
+            "name": "STDEVTripDuration2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "STDEV.P('yellow_tripdata_2020-08'[trep_Duration])",
+            "lineageTag": "502bae4d-01a2-4a71-b321-7a88106f4dce"
+          },
+          {
+            "name": "RangPassengerCount2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MAX('yellow_tripdata_2020-08'[passenger_count]) - min('yellow_tripdata_2020-08'[passenger_count])",
+            "lineageTag": "7c8d80b5-d7ef-4009-95a2-566df4eb88fe"
+          },
+          {
+            "name": "RangTotalAmount2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MAX('yellow_tripdata_2020-08'[total_amount]) - min('yellow_tripdata_2020-08'[total_amount])",
+            "lineageTag": "a3597f27-76e9-4aed-8548-fcc7d3acdf63"
+          },
+          {
+            "name": "RangTripDistance2020",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "MAX('yellow_tripdata_2020-08'[trip_distance]) - MIN('yellow_tripdata_2020-08'[trip_distance])",
+            "lineageTag": "6f5d0d25-7c24-46ff-bd54-0e8f6cbe1f72"
+          },
+          {
+            "name": "RangTripDuration2020",
+            "expression": "MAX('yellow_tripdata_2020-08'[trep_Duration]) - MIN('yellow_tripdata_2020-08'[trep_Duration])",
+            "formatString": "0",
+            "lineageTag": "29dd2799-7673-4097-bf67-3c084f7204ca"
+          }
+        ],
         "partitions": [
           {
             "name": "yellow_tripdata_2020-08",
@@ -1365,7 +1782,7 @@
             "source": {
               "expression": [
                 "let",
-                "    Source = Parquet.Document(File.Contents(\"C:\\Users\\yahya\\Desktop\\licence.AI\\S5\\A.D.C\\Projet\\yellow_tripdata_transformation_v1.2\\yellow_tripdata_2020-08.parquet\"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null]),",
+                "    Source = Parquet.Document(File.Contents(\"C:\\Users\\yahya\\Downloads\\yellow_tripdata_transformation_v1.3\\yellow_tripdata_2020-08.parquet\"), [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null]),",
                 "    #\"Filtered Rows\" = Table.SelectRows(Source, each [fare_amount] > 0),",
                 "    #\"Filtered Rows1\" = Table.SelectRows(#\"Filtered Rows\", each ([mta_tax] = 0.5)),",
                 "    #\"Filtered Rows2\" = Table.SelectRows(#\"Filtered Rows1\", each [extra] >= 0.5),",
@@ -1392,7 +1809,7 @@
         ]
       },
       {
-        "name": "Treps_by_category",
+        "name": "Treps_by_category_2024",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -1437,7 +1854,7 @@
         "lineageTag": "890f6342-d95b-4c85-a703-4f8829bcc281",
         "partitions": [
           {
-            "name": "Treps_by_category",
+            "name": "Treps_by_category_2024",
             "mode": "import",
             "source": {
               "expression": [
@@ -2258,7 +2675,7 @@
         "showAsVariationsOnly": true
       },
       {
-        "name": "RateCodeSummary",
+        "name": "RateCodeSummary2024",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -2313,7 +2730,7 @@
               }
             ],
             "dataType": "double",
-            "expression": "ROUND( DIVIDE(RateCodeSummary[Absolute frequency], SUM(RateCodeSummary[Absolute frequency])) * 100, 2)",
+            "expression": "ROUND( DIVIDE(RateCodeSummary2024[Absolute frequency], SUM(RateCodeSummary2024[Absolute frequency])) * 100, 2)",
             "isDataTypeInferred": true,
             "lineageTag": "de7441e6-b775-498e-9906-57fddf379d49",
             "summarizeBy": "sum",
@@ -2328,7 +2745,16 @@
               }
             ],
             "dataType": "int64",
-            "expression": "CALCULATE(SUM(RateCodeSummary[Absolute frequency]), FILTER(RateCodeSummary,RateCodeSummary[RatecodeID] <= EARLIER(RateCodeSummary[RatecodeID])))",
+            "expression": [
+              "CALCULATE(",
+              "    SUM(RateCodeSummary2024[Absolute frequency]),",
+              "    FILTER(",
+              "        RateCodeSummary2024,",
+              "        RateCodeSummary2024[RatecodeID] <= EARLIER(RateCodeSummary2024[RatecodeID])",
+              "    )",
+              ")",
+              ""
+            ],
             "formatString": "0",
             "isDataTypeInferred": true,
             "lineageTag": "05630930-b785-4387-bdf2-4671708e899c",
@@ -2339,7 +2765,7 @@
         "lineageTag": "61f2b738-efe6-4f5d-8fc8-e64694172b66",
         "partitions": [
           {
-            "name": "RateCodeSummary",
+            "name": "RateCodeSummary2024",
             "mode": "import",
             "source": {
               "expression": "SUMMARIZE('yellow_tripdata_2024-08','yellow_tripdata_2024-08'[RatecodeID],\"Absolute frequency\",COUNTROWS('yellow_tripdata_2024-08'))",
@@ -2349,7 +2775,7 @@
         ]
       },
       {
-        "name": "TripTypeSummary",
+        "name": "TripTypeSummary2024",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -2403,7 +2829,7 @@
               }
             ],
             "dataType": "double",
-            "expression": "ROUND(DIVIDE(TripTypeSummary[absolute frequency], SUM(TripTypeSummary[absolute frequency])) * 100, 2)",
+            "expression": "ROUND(DIVIDE(TripTypeSummary2024[absolute frequency], SUM(TripTypeSummary2024[absolute frequency])) * 100, 2)",
             "isDataTypeInferred": true,
             "lineageTag": "c6807b54-2d9a-4c93-a071-d45809c0d9cf",
             "summarizeBy": "sum",
@@ -2420,7 +2846,7 @@
             "dataType": "int64",
             "expression": [
               "SWITCH(",
-              "    TripTypeSummary[trep_type],",
+              "    TripTypeSummary2024[trep_type],",
               "    \"Court\", 1,",
               "    2",
               ")"
@@ -2442,10 +2868,10 @@
             "dataType": "int64",
             "expression": [
               "CALCULATE(",
-              "    SUM(TripTypeSummary[absolute frequency]),",
+              "    SUM(TripTypeSummary2024[absolute frequency]),",
               "    FILTER(",
-              "        TripTypeSummary,",
-              "        TripTypeSummary[Order] <= EARLIER(TripTypeSummary[Order]",
+              "        TripTypeSummary2024,",
+              "        TripTypeSummary2024[Order] <= EARLIER(TripTypeSummary2024[Order]",
               "        )",
               "    )",
               ")"
@@ -2460,7 +2886,7 @@
         "lineageTag": "5cf79678-3acf-4269-862e-9a5d29d150cd",
         "partitions": [
           {
-            "name": "TripTypeSummary",
+            "name": "TripTypeSummary2024",
             "mode": "import",
             "source": {
               "expression": "SUMMARIZE('yellow_tripdata_2024-08','yellow_tripdata_2024-08'[trep_type],\"absolute frequency\", COUNTROWS('yellow_tripdata_2024-08'))",
@@ -2470,7 +2896,7 @@
         ]
       },
       {
-        "name": "TripProfitSummary",
+        "name": "TripProfitSummary2024",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -2524,7 +2950,7 @@
               }
             ],
             "dataType": "double",
-            "expression": "ROUND(DIVIDE(TripProfitSummary[absolute frequency], SUM(TripProfitSummary[absolute frequency])) * 100, 2)",
+            "expression": "ROUND(DIVIDE(TripProfitSummary2024[absolute frequency], SUM(TripProfitSummary2024[absolute frequency])) * 100, 2)",
             "isDataTypeInferred": true,
             "lineageTag": "1d12b17e-cfad-479e-bec3-bd6ec01a2a4d",
             "summarizeBy": "sum",
@@ -2541,7 +2967,7 @@
             "dataType": "int64",
             "expression": [
               "SWITCH(",
-              "            TripProfitSummary[trep_profit_category],",
+              "            TripProfitSummary2024[trep_profit_category],",
               "            \"Faible\", 1,",
               "            \"Moyen\", 2,",
               "            3",
@@ -2564,10 +2990,10 @@
             "dataType": "int64",
             "expression": [
               "CALCULATE(",
-              "        SUM(TripProfitSummary[absolute frequency]),",
+              "        SUM(TripProfitSummary2024[absolute frequency]),",
               "        FILTER(",
-              "            TripProfitSummary,",
-              "            TripProfitSummary[Order] <= EARLIER(TripProfitSummary[Order]",
+              "            TripProfitSummary2024,",
+              "            TripProfitSummary2024[Order] <= EARLIER(TripProfitSummary2024[Order]",
               "            )",
               "        )",
               ")"
@@ -2582,7 +3008,7 @@
         "lineageTag": "d10e572a-7489-4171-a862-2e201c434e6e",
         "partitions": [
           {
-            "name": "TripProfitSummary",
+            "name": "TripProfitSummary2024",
             "mode": "import",
             "source": {
               "expression": "SUMMARIZE('yellow_tripdata_2024-08', 'yellow_tripdata_2024-08'[trep_profit_category], \"absolute frequency\", COUNTROWS('yellow_tripdata_2024-08'))",
@@ -2592,7 +3018,7 @@
         ]
       },
       {
-        "name": "PaymentTypeSummary",
+        "name": "PaymentTypeSummary2024",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -2643,7 +3069,7 @@
               }
             ],
             "dataType": "double",
-            "expression": "ROUND(DIVIDE(PaymentTypeSummary[absolute frequency], SUM(PaymentTypeSummary[absolute frequency])) * 100, 2)",
+            "expression": "ROUND(DIVIDE(PaymentTypeSummary2024[absolute frequency], SUM(PaymentTypeSummary2024[absolute frequency])) * 100, 2)",
             "formatString": "0",
             "isDataTypeInferred": true,
             "lineageTag": "fc96bc35-24d1-48c0-a464-c5ee3bbb49c1",
@@ -2662,10 +3088,10 @@
             "expression": [
               "",
               "CALCULATE(",
-              "    SUM(PaymentTypeSummary[absolute frequency]), ",
+              "    SUM(PaymentTypeSummary2024[absolute frequency]), ",
               "    FILTER(",
-              "        PaymentTypeSummary, ",
-              "        PaymentTypeSummary[payment_type] <= EARLIER(PaymentTypeSummary[payment_type])",
+              "        PaymentTypeSummary2024, ",
+              "        PaymentTypeSummary2024[payment_type] <= EARLIER(PaymentTypeSummary2024[payment_type])",
               "    )",
               ")",
               "",
@@ -2681,7 +3107,7 @@
         "lineageTag": "eaa44272-540d-418f-b04c-c52383f819a6",
         "partitions": [
           {
-            "name": "PaymentTypeSummary",
+            "name": "PaymentTypeSummary2024",
             "mode": "import",
             "source": {
               "expression": "SUMMARIZE('yellow_tripdata_2024-08', 'yellow_tripdata_2024-08'[payment_type],\"absolute frequency\",COUNTROWS('yellow_tripdata_2024-08'))",
@@ -2691,7 +3117,7 @@
         ]
       },
       {
-        "name": "TimeCategorySummary",
+        "name": "TimeCategorySummary2024",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -2745,7 +3171,7 @@
               }
             ],
             "dataType": "double",
-            "expression": "ROUND(  DIVIDE(TimeCategorySummary[absolute frequency],         SUM(TimeCategorySummary[absolute frequency])) * 100,2)",
+            "expression": "ROUND(  DIVIDE(TimeCategorySummary2024[absolute frequency],         SUM(TimeCategorySummary2024[absolute frequency])) * 100,2)",
             "isDataTypeInferred": true,
             "lineageTag": "3df0cff9-99f6-4f7c-9b20-4f1c0dfd2a7a",
             "summarizeBy": "sum",
@@ -2763,7 +3189,7 @@
             "expression": [
               "",
               "SWITCH(",
-              "    TimeCategorySummary[Time_category],",
+              "    TimeCategorySummary2024[Time_category],",
               "    \"matin\", 1,",
               "    \"après-midi\", 2,",
               "    \"soir\", 3,",
@@ -2787,10 +3213,10 @@
             ],
             "dataType": "int64",
             "expression": [
-              "CALCULATE(SUM(TimeCategorySummary[absolute frequency]), ",
+              "CALCULATE(SUM(TimeCategorySummary2024[absolute frequency]), ",
               "    FILTER(",
-              "        TimeCategorySummary,",
-              "        TimeCategorySummary[Order] <= EARLIER(TimeCategorySummary[Order])",
+              "        TimeCategorySummary2024,",
+              "        TimeCategorySummary2024[Order] <= EARLIER(TimeCategorySummary2024[Order])",
               "    ))"
             ],
             "formatString": "0",
@@ -2803,7 +3229,7 @@
         "lineageTag": "96a95fe7-30d8-4864-8ed4-f0c6f8ba794f",
         "partitions": [
           {
-            "name": "TimeCategorySummary",
+            "name": "TimeCategorySummary2024",
             "mode": "import",
             "source": {
               "expression": "SUMMARIZE('yellow_tripdata_2024-08','yellow_tripdata_2024-08'[Time_category],\"absolute frequency\",COUNTROWS('yellow_tripdata_2024-08'))",
@@ -2813,7 +3239,7 @@
         ]
       },
       {
-        "name": "TripDaySummary",
+        "name": "TripDaySummary2024",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -2867,7 +3293,7 @@
               }
             ],
             "dataType": "double",
-            "expression": "ROUND(DIVIDE(TripDaySummary[absolute frequency], SUM(TripDaySummary[absolute frequency])) * 100, 2)",
+            "expression": "ROUND(DIVIDE(TripDaySummary2024[absolute frequency], SUM(TripDaySummary2024[absolute frequency])) * 100, 2)",
             "isDataTypeInferred": true,
             "lineageTag": "8e5ee40f-2f1c-46b1-a65a-824f8c59c3cb",
             "summarizeBy": "sum",
@@ -2884,7 +3310,7 @@
             "dataType": "int64",
             "expression": [
               "SWITCH(",
-              "    TripDaySummary[trep_day],",
+              "    TripDaySummary2024[trep_day],",
               "    \"monday\", 1,",
               "    \"Tuesday\", 2,",
               "    \"Wednesday\", 3,",
@@ -2911,10 +3337,10 @@
             ],
             "dataType": "int64",
             "expression": [
-              "CALCULATE(SUM(TripDaySummary[absolute frequency]),",
+              "CALCULATE(SUM(TripDaySummary2024[absolute frequency]),",
               "    FILTER(",
-              "        TripDaySummary,",
-              "        TripDaySummary[Order] <= EARLIER(TripDaySummary[Order])",
+              "        TripDaySummary2024,",
+              "        TripDaySummary2024[Order] <= EARLIER(TripDaySummary2024[Order])",
               "    )",
               ")"
             ],
@@ -2928,7 +3354,7 @@
         "lineageTag": "769cbfd5-beb4-4698-a524-48949e43705a",
         "partitions": [
           {
-            "name": "TripDaySummary",
+            "name": "TripDaySummary2024",
             "mode": "import",
             "source": {
               "expression": "SUMMARIZE('yellow_tripdata_2024-08', 'yellow_tripdata_2024-08'[trep_day],\"absolute frequency\",COUNTROWS('yellow_tripdata_2024-08'))",
@@ -2938,7 +3364,7 @@
         ]
       },
       {
-        "name": "PickUpIDSummary",
+        "name": "PickUpIDSummary2024",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -2996,8 +3422,8 @@
             "expression": [
               "ROUND(",
               "    DIVIDE(",
-              "        PickUpIDSummary[frequence_absolut],",
-              "        SUM(PickUpIDSummary[frequence_absolut])",
+              "        PickUpIDSummary2024[frequence_absolut],",
+              "        SUM(PickUpIDSummary2024[frequence_absolut])",
               "    ) * 100,",
               "    2",
               ")"
@@ -3011,7 +3437,7 @@
         "lineageTag": "36da7f8e-035e-4f8e-9f95-32328b51730c",
         "partitions": [
           {
-            "name": "PickUpIDSummary",
+            "name": "PickUpIDSummary2024",
             "mode": "import",
             "source": {
               "expression": [
@@ -3028,7 +3454,7 @@
         ]
       },
       {
-        "name": "DropOffIDSummary",
+        "name": "DropOffIDSummary2024",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -3085,8 +3511,8 @@
             "dataType": "double",
             "expression": [
               "ROUND(DIVIDE(",
-              "                        DropOffIDSummary[frequence_absolut],",
-              "                        SUM(DropOffIDSummary[frequence_absolut]), 0",
+              "                        DropOffIDSummary2024[frequence_absolut],",
+              "                        SUM(DropOffIDSummary2024[frequence_absolut]), 0",
               " ) * 100, 2",
               ")"
             ],
@@ -3099,7 +3525,7 @@
         "lineageTag": "b78039bf-dc03-4148-85c0-7bdb9a99ec6e",
         "partitions": [
           {
-            "name": "DropOffIDSummary",
+            "name": "DropOffIDSummary2024",
             "mode": "import",
             "source": {
               "expression": [
@@ -3108,6 +3534,1173 @@
                 "                    'yellow_tripdata_2024-08'[DOLocationID],",
                 "                    \"frequence_absolut\",",
                 "                    COUNTROWS('yellow_tripdata_2024-08')",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_9a553ad7-fbed-4804-a349-b0a10b677aeb",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "26f350ad-051b-412c-bfb9-3890b76b56e9",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "isHidden": true,
+            "lineageTag": "131cd09c-319e-4e4a-83b3-e6893ee1f346",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "MonthNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "isHidden": true,
+            "lineageTag": "b7553cde-a842-451f-82c5-14702b953930",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "cc88e78a-2716-4153-ab08-3e03d0ba45fb",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "QuarterNo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([MonthNo] + 2) / 3)",
+            "isHidden": true,
+            "lineageTag": "8251c8fe-cce8-4ec6-a15e-b7b29895ac8b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Qtr \" & [QuarterNo]",
+            "isHidden": true,
+            "lineageTag": "5f1dba96-43e8-4b49-9dcb-e4e9a18d77ec",
+            "sortByColumn": "QuarterNo",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "isHidden": true,
+            "lineageTag": "cb217abb-4008-42ce-bb11-c8cde9c2b357",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Date Hierarchy",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Year",
+                "column": "Year",
+                "lineageTag": "2bfd31e0-1582-4255-871b-83b9e8a48ebf",
+                "ordinal": 0
+              },
+              {
+                "name": "Quarter",
+                "column": "Quarter",
+                "lineageTag": "8466e48a-0320-4e89-ab2e-885d9dac4a63",
+                "ordinal": 1
+              },
+              {
+                "name": "Month",
+                "column": "Month",
+                "lineageTag": "02328329-282a-496d-a248-285cbe3745ae",
+                "ordinal": 2
+              },
+              {
+                "name": "Day",
+                "column": "Day",
+                "lineageTag": "d275b552-42fb-4d9d-b0b5-961a3670e5d8",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "4d046eeb-95e1-4b7b-a9e6-48f5f81bf5e9"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "52622fb8-94ad-47b7-b215-ad9de4177dbb",
+        "partitions": [
+          {
+            "name": "LocalDateTable_9a553ad7-fbed-4804-a349-b0a10b677aeb",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('yellow_tripdata_2024-08'[trip_pickup_time])), 1, 1), Date(Year(MAX('yellow_tripdata_2024-08'[trip_pickup_time])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "Treps_by_category_2020",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "026ac9962d814ec1a08ca2c1e05c0344"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Time_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "d3857350-f689-4fd6-9db4-27cd79409557",
+            "sourceColumn": "yellow_tripdata_2020-08[Time_category]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Number_of_Trips",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "c990ae8e-ed6f-4e5c-a45b-a106cb9fc305",
+            "sourceColumn": "[Number_of_Trips]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "c24ba5ef-3f2b-4169-b134-b8c2e584427d",
+        "partitions": [
+          {
+            "name": "Treps_by_category_2020",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "SUMMARIZE(",
+                "    'yellow_tripdata_2020-08',",
+                "    'yellow_tripdata_2020-08'[Time_category],",
+                "    \"Number_of_Trips\", COUNTROWS('yellow_tripdata_2020-08'))"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DropOffIDSummary2020",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "76a4031fc90a4074869b43c1771d78dd"
+          }
+        ],
+        "columns": [
+          {
+            "name": "DOLocationID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "360471f3-3b76-4542-93d5-d0c95d2d4058",
+            "sourceColumn": "yellow_tripdata_2020-08[DOLocationID]",
+            "summarizeBy": "count",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "AbsolutFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "5ea54db9-0251-4d1b-8fb1-5f3440505640",
+            "sourceColumn": "[AbsolutFrequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": [
+              "ROUND(DIVIDE(",
+              "                        DropOffIDSummary2020[AbsolutFrequency],",
+              "                        SUM(DropOffIDSummary2020[AbsolutFrequency]), 0",
+              " ) * 100, 2",
+              ")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "db6ae304-b482-4643-8277-8f9554d6080d",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "59f3fb3a-f340-4361-a6bf-f2318b95584b",
+        "partitions": [
+          {
+            "name": "DropOffIDSummary2020",
+            "mode": "import",
+            "source": {
+              "expression": "SUMMARIZE('yellow_tripdata_2020-08','yellow_tripdata_2020-08'[DOLocationID],\"AbsolutFrequency\",COUNTROWS('yellow_tripdata_2020-08'))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "PaymentTypeSummary2020",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "ac68acd5bc43475a8b709ec1a1612d39"
+          }
+        ],
+        "columns": [
+          {
+            "name": "payment_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "cc3d53a8-0187-4a2f-979f-860c39a896c8",
+            "sourceColumn": "yellow_tripdata_2020-08[payment_type]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "AbsolutFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "3005fd4f-f30e-4bc8-ac70-3ed8f65fb3ea",
+            "sourceColumn": "[AbsolutFrequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND(DIVIDE(PaymentTypeSummary2020[AbsolutFrequency], SUM(PaymentTypeSummary2020[AbsolutFrequency])) * 100, 2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "6af212b1-e887-4455-8cd5-4a0ea97ce7a7",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumulativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(PaymentTypeSummary2020[AbsolutFrequency]), ",
+              "    FILTER(",
+              "        PaymentTypeSummary2020, ",
+              "        PaymentTypeSummary2020[payment_type] <= EARLIER(PaymentTypeSummary2020[payment_type])",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "88a03b52-9b9b-4278-8155-2a16ccc76f3c",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "94545fa6-2eaf-4997-bc5a-a0cdbb1b25e0",
+        "partitions": [
+          {
+            "name": "PaymentTypeSummary2020",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "SUMMARIZE(",
+                "    'yellow_tripdata_2020-08',",
+                "    'yellow_tripdata_2020-08'[payment_type],",
+                "    \"AbsolutFrequency\",",
+                "    COUNTROWS('yellow_tripdata_2020-08')",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "PickUpIDSummary2020",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "086aad908bb648dbb9ba9648087fe434"
+          }
+        ],
+        "columns": [
+          {
+            "name": "PULocationID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "3aca4a02-beb6-479a-b28b-738466beeba2",
+            "sourceColumn": "yellow_tripdata_2020-08[PULocationID]",
+            "summarizeBy": "count",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "AbsolutFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "362b91a8-3af6-4d45-b107-8d4dc44ae389",
+            "sourceColumn": "[AbsolutFrequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": [
+              "ROUND(",
+              "    DIVIDE(",
+              "        PickUpIDSummary2020[AbsolutFrequency],",
+              "        SUM(PickUpIDSummary2020[AbsolutFrequency])",
+              "    ) * 100,",
+              "    2",
+              ")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "16a8a9e5-ff4e-4f79-bf8d-459418b25e25",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "328743e1-dac4-4bc2-9a43-ff1e7a0ffafa",
+        "partitions": [
+          {
+            "name": "PickUpIDSummary2020",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "SUMMARIZE(",
+                "    'yellow_tripdata_2020-08',",
+                "    'yellow_tripdata_2020-08'[PULocationID],",
+                "    \"AbsolutFrequency\",",
+                "    COUNTROWS('yellow_tripdata_2020-08')",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "RateCodeSummary2020",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "8df861356f144135a57c501c7b461b14"
+          }
+        ],
+        "columns": [
+          {
+            "name": "RatecodeID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "60d5f621-8270-4dd3-9c0a-8447058e0d75",
+            "sourceColumn": "yellow_tripdata_2020-08[RatecodeID]",
+            "summarizeBy": "count",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "AbsolutFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "da982f7d-988e-43ea-b14d-6683c254bf1d",
+            "sourceColumn": "[AbsolutFrequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND( DIVIDE(RateCodeSummary2020[AbsolutFrequency], SUM(RateCodeSummary2020[AbsolutFrequency])) * 100, 2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "f9932cd3-c965-4454-a081-b552e854e55d",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumultativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "CALCULATE(",
+              "    SUM(RateCodeSummary2020[AbsolutFrequency]),",
+              "    FILTER(",
+              "        RateCodeSummary2020,",
+              "        RateCodeSummary2020[RatecodeID] <= EARLIER(RateCodeSummary2020[RatecodeID])",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "5079caf0-52cb-4e73-a481-1b15c070d9b7",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "a703229f-98bd-4642-b57f-bad29ba9d535",
+        "partitions": [
+          {
+            "name": "RateCodeSummary2020",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "SUMMARIZE(",
+                "    'yellow_tripdata_2020-08',",
+                "    'yellow_tripdata_2020-08'[RatecodeID],",
+                "    \"AbsolutFrequency\",",
+                "    COUNTROWS('yellow_tripdata_2020-08')",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TimeCategorySummary2020",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "cd699e5922d14aea894cc94a0848ed67"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Time_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "573b23b4-8982-4b0a-b75c-002112ad3aaf",
+            "sourceColumn": "yellow_tripdata_2020-08[Time_category]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "AbsolutFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "531bdbcd-374e-4ace-a259-5de03b619841",
+            "sourceColumn": "[AbsolutFrequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "",
+              "SWITCH(",
+              "    TimeCategorySummary2020[Time_category],",
+              "    \"matin\", 1,",
+              "    \"après-midi\", 2,",
+              "    \"soir\", 3,",
+              "    \"nuit\", 4,",
+              "    BLANK()",
+              "    )"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "8090757f-a01f-488f-a9fc-0351489e0132",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND(  DIVIDE(TimeCategorySummary2020[AbsolutFrequency],         SUM(TimeCategorySummary2020[AbsolutFrequency])) * 100,2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "fe389740-df28-4dbe-862c-ea1a30e16dd4",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumltativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "CALCULATE(SUM(TimeCategorySummary2020[AbsolutFrequency]), ",
+              "    FILTER(",
+              "        TimeCategorySummary2020,",
+              "        TimeCategorySummary2020[Order] <= EARLIER(TimeCategorySummary2020[Order])",
+              "    ))"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "626a1071-cd38-43ca-834f-0b490f674c3f",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "d5631569-c032-430c-a590-314d984140bd",
+        "partitions": [
+          {
+            "name": "TimeCategorySummary2020",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "SUMMARIZE(",
+                "    'yellow_tripdata_2020-08',",
+                "    'yellow_tripdata_2020-08'[Time_category],",
+                "    \"AbsolutFrequency\",",
+                "    COUNTROWS('yellow_tripdata_2020-08')",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TripDaySummary2020",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "50b3ea108e8a4e459b5466055cf8e585"
+          }
+        ],
+        "columns": [
+          {
+            "name": "trep_day",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "638a6073-66b4-4b80-9f37-d37b26b4d5d3",
+            "sourceColumn": "yellow_tripdata_2020-08[trep_day]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "AbsolutFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "fe1f9b4b-0da2-457c-ae10-d630d9c78fdd",
+            "sourceColumn": "[AbsolutFrequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "SWITCH(",
+              "    TripDaySummary2020[trep_day],",
+              "    \"monday\", 1,",
+              "    \"Tuesday\", 2,",
+              "    \"Wednesday\", 3,",
+              "    \"Thursday\", 4,",
+              "    \"Friday\", 5,",
+              "    \"Saturday\", 6,",
+              "    \"Sunday\", 7,",
+              "    -1",
+              "    )"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "2985495f-0177-4ebc-aed5-6dae3b46f7f9",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND(DIVIDE(TripDaySummary2020[AbsolutFrequency], SUM(TripDaySummary2020[AbsolutFrequency])) * 100, 2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "1bf342a5-f329-46fd-8600-037ae37d5f83",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumultativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "CALCULATE(SUM(TripDaySummary2020[AbsolutFrequency]),",
+              "    FILTER(",
+              "        TripDaySummary2020,",
+              "        TripDaySummary2020[Order] <= EARLIER(TripDaySummary2020[Order])",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "af36141c-eec0-441d-92ac-bbeb2bdbaa35",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "76e0b9aa-4da9-48fd-a697-b59d6b94e61e",
+        "partitions": [
+          {
+            "name": "TripDaySummary2020",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "SUMMARIZE(",
+                "    'yellow_tripdata_2020-08',",
+                "    'yellow_tripdata_2020-08'[trep_day],",
+                "    \"AbsolutFrequency\",",
+                "    COUNTROWS('yellow_tripdata_2020-08')",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TripProfitSummary2020",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "14d59c0ccc9f48ca873a0b6d247db2d9"
+          }
+        ],
+        "columns": [
+          {
+            "name": "trep_profit_category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "2b698707-4198-40f1-95c8-b46492147dbc",
+            "sourceColumn": "yellow_tripdata_2020-08[trep_profit_category]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "AbsolutFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "6d0e516a-7ac5-4a86-ac6b-492d99c73f16",
+            "sourceColumn": "[AbsolutFrequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "SWITCH(",
+              "            TripProfitSummary2020[trep_profit_category],",
+              "            \"Faible\", 1,",
+              "            \"Moyen\", 2,",
+              "            3",
+              "            )"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "510c6af0-66d5-4c22-96d6-7d78aa074fad",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND(DIVIDE(TripProfitSummary2020[AbsolutFrequency], SUM(TripProfitSummary2020[AbsolutFrequency])) * 100, 2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "08534edc-b9e7-4e4f-990b-fd2f9a1c6f56",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumltativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "CALCULATE(",
+              "        SUM(TripProfitSummary2020[AbsolutFrequency]),",
+              "        FILTER(",
+              "            TripProfitSummary2020,",
+              "            TripProfitSummary2020[Order] <= EARLIER(TripProfitSummary2020[Order]",
+              "            )",
+              "        )",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "a7818195-c45f-407f-b491-048080dfdc93",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "a5bee270-36fe-4719-8711-2b40839a6cca",
+        "partitions": [
+          {
+            "name": "TripProfitSummary2020",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "SUMMARIZE(",
+                "    'yellow_tripdata_2020-08',",
+                "    'yellow_tripdata_2020-08'[trep_profit_category],",
+                "    \"AbsolutFrequency\",",
+                "    COUNTROWS('yellow_tripdata_2020-08')",
+                ")"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TripTypeSummary2020",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "b4d1a51bf5e947a0b2d7af75bbee9c9f"
+          }
+        ],
+        "columns": [
+          {
+            "name": "trep_type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "09500e96-4d31-491f-aacc-7b16dc08f989",
+            "sourceColumn": "yellow_tripdata_2020-08[trep_type]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "AbsolutFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "3d929036-e4f2-48f4-9a4e-4f391993fba2",
+            "sourceColumn": "[AbsolutFrequency]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "SWITCH(",
+              "    TripTypeSummary2020[trep_type],",
+              "    \"Court\", 1,",
+              "    2",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "f0de8aff-6392-4030-82d1-8575b0fa2fcb",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "RelativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "expression": "ROUND(DIVIDE(TripTypeSummary2020[AbsolutFrequency], SUM(TripTypeSummary2020[AbsolutFrequency])) * 100, 2)",
+            "isDataTypeInferred": true,
+            "lineageTag": "ffce22bb-a1df-4bc1-a14e-bd5248e08404",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "CumltativeFrequency",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "CALCULATE(",
+              "    SUM(TripTypeSummary2020[AbsolutFrequency]),",
+              "    FILTER(",
+              "        TripTypeSummary2020,",
+              "        TripTypeSummary2020[Order] <= EARLIER(TripTypeSummary2020[Order]",
+              "        )",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "88959ce4-02f6-4aaa-9792-385933488c17",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "2bfcf964-555c-4700-9dcc-14750e1d0db8",
+        "partitions": [
+          {
+            "name": "TripTypeSummary2020",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "SUMMARIZE(",
+                "    'yellow_tripdata_2020-08',",
+                "    'yellow_tripdata_2020-08'[trep_type],",
+                "    \"AbsolutFrequency\",",
+                "    COUNTROWS('yellow_tripdata_2020-08')",
                 ")"
               ],
               "type": "calculated"
